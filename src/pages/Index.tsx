@@ -145,10 +145,10 @@ const Index = () => {
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 md:p-12 border border-pink-200 text-center">
               <div className="text-6xl mb-6">🎉</div>
               <h1 className="text-2xl md:text-4xl font-bold text-pink-600 mb-4">
-                Teşekkürler Nilüfer! 💕
+                Bu Daha Başlangıç! 💕
               </h1>
               <p className="text-gray-600 text-lg mb-6">
-                Cevabın kaydedildi! En kısa zamanda istek atıyorum! 🌹
+                En kısa zamanda istek atıyorum! 🌹
               </p>
               <div className="flex justify-center space-x-2">
                 <Heart className="text-red-500 animate-bounce" size={32} />
