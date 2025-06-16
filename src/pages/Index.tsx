@@ -1,16 +1,20 @@
-
-import { useState } from 'react';
-import { supabase } from '@/integrations/supabase/client';
-import { useToast } from '@/hooks/use-toast';
-import { Heart, Calendar, Instagram } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+import { Heart, Calendar, Instagram } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const Index = () => {
-  const [instagramUsername, setInstagramUsername] = useState('');
-  const [proposedDate, setProposedDate] = useState('');
+  const [instagramUsername, setInstagramUsername] = useState("");
+  const [proposedDate, setProposedDate] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const [showHearts, setShowHearts] = useState(false);
@@ -26,7 +30,7 @@ const Index = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!instagramUsername || !proposedDate) {
       toast({
         title: "Eksik bilgiler",
@@ -39,14 +43,12 @@ const Index = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase
-        .from('date_proposals')
-        .insert([
-          {
-            instagram_username: instagramUsername,
-            proposed_date: proposedDate,
-          },
-        ]);
+      const { error } = await supabase.from("date_proposals").insert([
+        {
+          instagram_username: instagramUsername,
+          proposed_date: proposedDate,
+        },
+      ]);
 
       if (error) throw error;
 
@@ -57,7 +59,7 @@ const Index = () => {
         description: "Romantik teklifin kaydedildi!",
       });
     } catch (error) {
-      console.error('Error submitting proposal:', error);
+      console.error("Error submitting proposal:", error);
       toast({
         title: "Bir hata oluştu",
         description: "Tekrar dener misin?",
@@ -97,9 +99,9 @@ const Index = () => {
               size={Math.random() * 30 + 20}
               style={{
                 left: `${Math.random() * 100}%`,
-                bottom: '-50px',
+                bottom: "-50px",
                 animationDelay: `${Math.random() * 2}s`,
-                animationDuration: '3s',
+                animationDuration: "3s",
                 transform: `translateY(-${100 + Math.random() * 200}vh)`,
               }}
             />
@@ -113,12 +115,20 @@ const Index = () => {
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 md:p-12 border border-pink-200 text-center">
               <div className="mb-8">
                 <h1 className="text-3xl md:text-5xl font-bold text-pink-600 mb-6 animate-pulse leading-tight">
-                  Benimle Çıkar Mısın Merve? 💕
+                  Benimle Bir Sonraki Aşamaya Geçer Misin Nilüfer? 💕
                 </h1>
                 <div className="flex justify-center space-x-2 mb-6">
                   <Heart className="text-red-500 animate-bounce" size={28} />
-                  <Heart className="text-pink-500 animate-bounce" size={32} style={{ animationDelay: '0.2s' }} />
-                  <Heart className="text-red-500 animate-bounce" size={28} style={{ animationDelay: '0.4s' }} />
+                  <Heart
+                    className="text-pink-500 animate-bounce"
+                    size={32}
+                    style={{ animationDelay: "0.2s" }}
+                  />
+                  <Heart
+                    className="text-red-500 animate-bounce"
+                    size={28}
+                    style={{ animationDelay: "0.4s" }}
+                  />
                 </div>
               </div>
 
@@ -135,15 +145,23 @@ const Index = () => {
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 md:p-12 border border-pink-200 text-center">
               <div className="text-6xl mb-6">🎉</div>
               <h1 className="text-2xl md:text-4xl font-bold text-pink-600 mb-4">
-                Teşekkürler Merve! 💕
+                Teşekkürler Nilüfer! 💕
               </h1>
               <p className="text-gray-600 text-lg mb-6">
-                Cevabın kaydedildi! Çok heyecanlıyım! 🌹
+                Cevabın kaydedildi! En kısa zamanda istek atıyorum! 🌹
               </p>
               <div className="flex justify-center space-x-2">
                 <Heart className="text-red-500 animate-bounce" size={32} />
-                <Heart className="text-pink-500 animate-bounce" size={36} style={{ animationDelay: '0.2s' }} />
-                <Heart className="text-red-500 animate-bounce" size={32} style={{ animationDelay: '0.4s' }} />
+                <Heart
+                  className="text-pink-500 animate-bounce"
+                  size={36}
+                  style={{ animationDelay: "0.2s" }}
+                />
+                <Heart
+                  className="text-red-500 animate-bounce"
+                  size={32}
+                  style={{ animationDelay: "0.4s" }}
+                />
               </div>
             </div>
           )}
@@ -158,10 +176,13 @@ const Index = () => {
               Harika! 💕
             </DialogTitle>
           </DialogHeader>
-          
+
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="instagram" className="text-pink-700 font-medium flex items-center gap-2">
+              <Label
+                htmlFor="instagram"
+                className="text-pink-700 font-medium flex items-center gap-2"
+              >
                 <Instagram size={18} />
                 Instagram Kullanıcı Adın
               </Label>
@@ -176,7 +197,10 @@ const Index = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="date" className="text-pink-700 font-medium flex items-center gap-2">
+              <Label
+                htmlFor="date"
+                className="text-pink-700 font-medium flex items-center gap-2"
+              >
                 <Calendar size={18} />
                 İlk Randevumuz Ne Zaman Olsun?
               </Label>
@@ -185,7 +209,7 @@ const Index = () => {
                 type="date"
                 value={proposedDate}
                 onChange={(e) => setProposedDate(e.target.value)}
-                min={new Date().toISOString().split('T')[0]}
+                min={new Date().toISOString().split("T")[0]}
                 className="border-pink-300 focus:border-pink-500 focus:ring-pink-500"
               />
             </div>
@@ -213,7 +237,7 @@ const Index = () => {
 
       <style jsx>{`
         @keyframes heartFloat {
-          0% { 
+          0% {
             transform: translateY(100vh) rotate(0deg);
             opacity: 0;
           }
@@ -223,7 +247,7 @@ const Index = () => {
           90% {
             opacity: 1;
           }
-          100% { 
+          100% {
             transform: translateY(-100vh) rotate(360deg);
             opacity: 0;
           }
